@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -48,13 +49,13 @@ public class RepositoriesAdapter extends RecyclerView.Adapter {
             case VIEW_TYPE_LIST_ITEM:
                 ViewHolder holder = (ViewHolder) viewHolder;
 
-                Uri uri = Uri.parse(mData.get(position).getAvatar()).buildUpon()
+              /*  Uri uri = Uri.parse(mData.get(position).getAvatar()).buildUpon()
                         .build();
                 Glide
                         .with(context)
                         .load(uri)
                         .error(R.drawable.ic_splash_github)
-                        .into(holder.iconImageView);
+                        .into(holder.iconImageView);*/
 
                 holder.titleTextView.setText((mData.get(position).getName()));
 
@@ -85,13 +86,13 @@ public class RepositoriesAdapter extends RecyclerView.Adapter {
 
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private RelativeLayout layout;
+        private LinearLayout layout;
         private TextView titleTextView;
         private ImageView iconImageView;
 
         ViewHolder(View item) {
             super(item);
-            layout = (RelativeLayout) item.findViewById(R.id.layout_item_repo);
+            layout = (LinearLayout) item.findViewById(R.id.layout_item_repo);
             iconImageView = (ImageView) item.findViewById(R.id.repo_icon);
             titleTextView = (TextView) item.findViewById(R.id.repo_title);
 

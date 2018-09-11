@@ -1,12 +1,24 @@
 package com.dorianmusaj.repo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class GithubRepository {
 
+    @JsonProperty("id")
     private int id;
+    @JsonProperty("name")
     private String name;
+ /*   @JsonProperty("owner")
     private String owner;
-    private String avatar;
+    @JsonProperty("avatar")
+    private String avatar;*/
+    @JsonProperty("description")
     private String description;
+
+    public GithubRepository(){}
 
     public int getId() {
         return id;
@@ -24,7 +36,7 @@ public class GithubRepository {
         this.name = name;
     }
 
-    public String getOwner() {
+/*    public String getOwner() {
         return owner;
     }
 
@@ -38,7 +50,7 @@ public class GithubRepository {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
-    }
+    }*/
 
     public String getDescription() {
         return description;

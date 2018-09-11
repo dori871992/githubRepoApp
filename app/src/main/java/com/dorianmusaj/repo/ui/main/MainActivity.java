@@ -20,6 +20,7 @@ public class MainActivity extends BasicActivity implements  MvpMainView {
 
     private RepositoriesAdapter mRepositoriesAdapter;
     private Unbinder mUnBinder;
+    private MainPresenter presenter;
 
 
     @Override
@@ -27,6 +28,8 @@ public class MainActivity extends BasicActivity implements  MvpMainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mUnBinder=ButterKnife.bind(this);
+        presenter=new MainPresenter(this, this);
+
 
         mRepositoriesAdapter=new RepositoriesAdapter(this);
 
@@ -34,6 +37,8 @@ public class MainActivity extends BasicActivity implements  MvpMainView {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(mRepositoriesAdapter);
+
+        presenter.getRepositories();
 
     }
 

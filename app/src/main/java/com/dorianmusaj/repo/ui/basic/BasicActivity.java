@@ -7,7 +7,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dorianmusaj.repo.R;
 import com.dorianmusaj.repo.utils.CommonUtils;
@@ -15,7 +17,7 @@ import com.dorianmusaj.repo.utils.NetworkUtils;
 
 public class BasicActivity extends Activity implements MvpBasicView {
 
-    private ProgressDialog mProgressDialog;
+    private ProgressBar mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +31,12 @@ public class BasicActivity extends Activity implements MvpBasicView {
 
     @Override
     public void loadingFinished(String error) {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.cancel();
+        if (mProgressDialog != null && mProgressDialog.getVisibility()==View.VISIBLE) {
+            mProgressDialog.setVisibility(View.GONE);
         }
 
         if(error!=null)
-            showSnackBar(error, null);
+            showToast(error, null);
 
     }
 
@@ -44,13 +46,7 @@ public class BasicActivity extends Activity implements MvpBasicView {
     }
 
 
-    public void showSnackBar(String message, @Nullable Integer duration) {
-        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),
-                message, duration != null ? duration : Snackbar.LENGTH_SHORT);
-        View sbView = snackbar.getView();
-        TextView textView = (TextView) sbView
-                .findViewById(android.support.design.R.id.snackbar_text);
-        textView.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
-        snackbar.show();
+    public void showToast(String message, @Nullable Integer duration) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
