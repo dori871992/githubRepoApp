@@ -14,21 +14,19 @@ import com.dorianmusaj.repo.R;
 public class CommonUtils {
 
 
-    public static ProgressBar showLoadingDialog(Context context) {
-        ProgressBar progressDialog = new ProgressBar(context);
+    public static ProgressDialog showLoadingDialog(Context context) {
+        ProgressDialog progressDialog = new ProgressDialog(context,  R.style.MyGravity);
 
-      /*  progressDialog.show();
+        progressDialog.show();
         if (progressDialog.getWindow() != null) {
-            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         }
 
-       // progressDialog.setContentView(R.layout.progress_dialog);
-
-        progressDialog.setIndeterminate(true);
+        progressDialog.setIndeterminate(false);
         progressDialog.setCancelable(false);
-        progressDialog.setCanceledOnTouchOutside(false);*/
+        progressDialog.setCanceledOnTouchOutside(false);
 
-        progressDialog.setVisibility(View.VISIBLE);
+        progressDialog.show();
         return progressDialog;
     }
 

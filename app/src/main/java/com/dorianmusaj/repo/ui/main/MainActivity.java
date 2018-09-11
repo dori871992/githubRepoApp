@@ -1,6 +1,7 @@
 package com.dorianmusaj.repo.ui.main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,8 @@ import com.dorianmusaj.repo.R;
 import com.dorianmusaj.repo.adapter.RepositoriesAdapter;
 import com.dorianmusaj.repo.model.GithubRepository;
 import com.dorianmusaj.repo.ui.basic.BasicActivity;
+import com.dorianmusaj.repo.ui.repo.RepositoryActivity;
+import com.dorianmusaj.repo.utils.ItemClickSupport;
 
 import java.util.List;
 
@@ -37,6 +40,15 @@ public class MainActivity extends BasicActivity implements  MvpMainView {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(mRepositoriesAdapter);
+
+        ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                Intent repoActivity = new Intent(MainActivity.this, RepositoryActivity.class);
+                repoActivity.putExtra("repoId",mRepositoriesAdapter.getItemAtPosition(position).getId());
+                startActivity(repoActivity);
+            }
+        });
 
         presenter.getRepositories();
 

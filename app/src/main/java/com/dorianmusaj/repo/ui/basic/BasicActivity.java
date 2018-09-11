@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -15,9 +16,9 @@ import com.dorianmusaj.repo.R;
 import com.dorianmusaj.repo.utils.CommonUtils;
 import com.dorianmusaj.repo.utils.NetworkUtils;
 
-public class BasicActivity extends Activity implements MvpBasicView {
+public class BasicActivity extends AppCompatActivity implements MvpBasicView {
 
-    private ProgressBar mProgressDialog;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +32,8 @@ public class BasicActivity extends Activity implements MvpBasicView {
 
     @Override
     public void loadingFinished(String error) {
-        if (mProgressDialog != null && mProgressDialog.getVisibility()==View.VISIBLE) {
-            mProgressDialog.setVisibility(View.GONE);
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
         }
 
         if(error!=null)

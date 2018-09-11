@@ -21,4 +21,5 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
+    <style name="MyGravity" parent="android:Theme.Material.Dialog"/>
 </resources>

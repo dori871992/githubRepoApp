@@ -49,15 +49,16 @@ public class RepositoriesAdapter extends RecyclerView.Adapter {
             case VIEW_TYPE_LIST_ITEM:
                 ViewHolder holder = (ViewHolder) viewHolder;
 
-              /*  Uri uri = Uri.parse(mData.get(position).getAvatar()).buildUpon()
+               Uri uri = Uri.parse(mData.get(position).getOwner().getAvatar()).buildUpon()
                         .build();
                 Glide
                         .with(context)
                         .load(uri)
                         .error(R.drawable.ic_splash_github)
-                        .into(holder.iconImageView);*/
+                        .into(holder.iconImageView);
 
-                holder.titleTextView.setText((mData.get(position).getName()));
+                holder.titleTextView.setText(mData.get(position).getName());
+                holder.descTextView.setText(mData.get(position).getDescription());
 
 
                 break;
@@ -88,6 +89,7 @@ public class RepositoriesAdapter extends RecyclerView.Adapter {
     class ViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout layout;
         private TextView titleTextView;
+        private TextView descTextView;
         private ImageView iconImageView;
 
         ViewHolder(View item) {
@@ -95,7 +97,7 @@ public class RepositoriesAdapter extends RecyclerView.Adapter {
             layout = (LinearLayout) item.findViewById(R.id.layout_item_repo);
             iconImageView = (ImageView) item.findViewById(R.id.repo_icon);
             titleTextView = (TextView) item.findViewById(R.id.repo_title);
-
+            descTextView= (TextView) item.findViewById(R.id.repo_desc);
         }
     }
 
@@ -106,6 +108,10 @@ public class RepositoriesAdapter extends RecyclerView.Adapter {
             super(item);
             emptyTextView = (TextView) item.findViewById(R.id.textview_empty_list);
         }
+    }
+
+    public GithubRepository getItemAtPosition(int position){
+        return mData.get(position);
     }
 
 }
